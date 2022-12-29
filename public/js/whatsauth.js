@@ -75,11 +75,9 @@ function getCookie(cname) {
 function checkCookie() {
   let phonenumber = getCookie("phonenumber");
   if (phonenumber != "") {
-    document.getElementById("nophonenumber").classList.add = "invisible";
+    document.getElementById("nophonenumber").classList.add = "hidden";
     document.getElementById("phonenumber").innerHTML = phonenumber;
-    document.getElementById("hasphonenumber").classList.add = "visible";
   } else {
-    document.getElementById("nophonenumber").classList.add = "visible";
-    document.getElementById("hasphonenumber").classList.add = "invisible";
+    document.getElementById("hasphonenumber").classList.add = "hidden";
   }
 }
