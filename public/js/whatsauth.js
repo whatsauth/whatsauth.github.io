@@ -81,6 +81,6 @@ function checkCookie() {
   } else {
     console.log(phonenumber);
     console.log("ada phone number");
-    document.getElementById("hasphonenumber").classList.add(hidden);
+    document.getElementById("hasphonenumber").classList.add("hidden");
   }
 }
