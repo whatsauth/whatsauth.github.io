@@ -91,6 +91,12 @@ function checkCookie() {
 function submitPhoneNumber(){
   let phonenumber = document.getElementById("loginphonenumber").value;
   console.log(phonenumber);
-  setPhoneNumber(phonenumber);
-  checkCookie();
+  let isnum = /^\d+$/.test(phonenumber);
+  if (isnum){
+    setPhoneNumber(phonenumber);
+    checkCookie();
+  } else{
+    document.getElementById("loginmessage").innerHTML ="is not a valid phone number. Please enter a valid Phone Number. E.g:62811223344";
+  }
+  
 }
