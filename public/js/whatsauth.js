@@ -75,11 +75,11 @@ function getCookie(cname) {
 function checkCookie() {
   let phonenumber = getCookie("phonenumber");
   if (phonenumber != "") {
-    document.getElementById("nophonenumber").style.display = "none";
+    document.getElementById("nophonenumber").classList.add = "invisible";
     document.getElementById("phonenumber").innerHTML = phonenumber;
-    document.getElementById("hasphonenumber").style.display = "block";
+    document.getElementById("hasphonenumber").classList.add = "visible";
   } else {
-    document.getElementById("nophonenumber").style.display = "block";
-    document.getElementById("hasphonenumber").style.display = "none";
+    document.getElementById("nophonenumber").classList.add = "visible";
+    document.getElementById("hasphonenumber").classList.add = "invisible";
   }
 }
