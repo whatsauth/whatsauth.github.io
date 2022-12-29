@@ -35,6 +35,12 @@ function showQR(text){
 }
 
 
+function setPhoneNumber(phonenumber){
+  if (phonenumber != "" && phonenumber != null) {
+    setCookieWithExpireDay("phonenumber", phonenumber, 365);
+  }
+}
+
 function changePhoneNumber(){
   deleteCookie("phonenumber");
   document.getElementById("phonenumber").innerHTML = "please login";
@@ -69,12 +75,11 @@ function getCookie(cname) {
 function checkCookie() {
   let phonenumber = getCookie("phonenumber");
   if (phonenumber != "") {
+    document.getElementById("nophonenumber").style.display = "none";
     document.getElementById("phonenumber").innerHTML = phonenumber;
-    document.getElementById("changenumberbutton").style.display = "block";
+    document.getElementById("hasphonenumber").style.display = "block";
   } else {
-    phonenumber = prompt("Please enter your phone number :", "");
-    if (phonenumber != "" && phonenumber != null) {
-      setCookieWithExpireDay("phonenumber", phonenumber, 365);
-    }
+    document.getElementById("nophonenumber").style.display = "block";
+    document.getElementById("hasphonenumber").style.display = "none";
   }
 }
