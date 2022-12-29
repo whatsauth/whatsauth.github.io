@@ -43,7 +43,7 @@ function setPhoneNumber(phonenumber){
 
 function changePhoneNumber(){
   deleteCookie("phonenumber");
-  document.getElementById("phonenumber").innerHTML = "please login";
+  checkCookie();
 }
 
 function setCookieWithExpireDay(cname, cvalue, exdays) {
