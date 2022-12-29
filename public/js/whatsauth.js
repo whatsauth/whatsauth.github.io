@@ -23,7 +23,7 @@ mytime=setTimeout('getData(url)',refresh)
 function makeQrCode(text){
     qr = QRCode.generateSVG(text, {
         ecclevel: "M",
-        fillcolor: "#F2F2F2",
+        fillcolor: "#FFFFFF",
         textcolor: "#000000",
         margin: 4,
         modulesize: 8
