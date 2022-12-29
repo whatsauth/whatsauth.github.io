@@ -101,7 +101,7 @@ function submitPhoneNumber(){
 
 function localPrefixHandler(phonenumber){
   let prefix=phonenumber[0];
-  if (prefix == "0"){
+  if (prefix === '0'){
     phonenumber.replace(prefix,'62');
   }
   return phonenumber;
