@@ -1,6 +1,6 @@
 const url="/public/qr/qr.json";
 
-let logoutbutton = `   <button class="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-0 px-1 border border-blue-500 hover:border-transparent rounded">
+let logoutbutton = `   <button onclick="logout()" class="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-0 px-1 border border-blue-500 hover:border-transparent rounded">
 Logout
 </button>`;
 
@@ -41,12 +41,19 @@ function showQR(text){
 }
 
 
+function logout(){
+  deleteCookie("phonenumber");
+}
 
 function setCookieWithExpireDay(cname, cvalue, exdays) {
   const d = new Date();
   d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
   let expires = "expires="+d.toUTCString();
   document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+}
+
+function deleteCookie(cname) {
+  document.cookie = cname + "; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
 }
 
 function getCookie(cname) {
