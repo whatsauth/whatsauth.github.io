@@ -94,7 +94,7 @@ function submitPhoneNumber(){
     setPhoneNumber(phonenumber);
     checkCookie();
   } else{
-    document.getElementById("loginmessage").innerHTML ="is not a valid phone number. Please enter a valid Phone Number. E.g:62811223344";
+    document.getElementById("loginmessage").innerHTML ="Please enter a valid Phone Number. E.g: 62811223344";
   }
   
 }
