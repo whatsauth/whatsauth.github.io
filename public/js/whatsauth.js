@@ -43,7 +43,7 @@ function showQR(text){
 
 function changePhoneNumber(){
   deleteCookie("phonenumber");
-  checkCookie();
+  document.getElementById("phonenumber").innerHTML = "please login";
 }
 
 function setCookieWithExpireDay(cname, cvalue, exdays) {
