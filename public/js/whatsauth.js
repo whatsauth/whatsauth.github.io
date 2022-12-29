@@ -91,10 +91,18 @@ function submitPhoneNumber(){
   console.log(phonenumber);
   let isnum = /^\d+$/.test(phonenumber);
   if (isnum){
-    setPhoneNumber(phonenumber);
+    setPhoneNumber(localPrefixHandler(phonenumber));
     checkCookie();
   } else{
     document.getElementById("loginmessage").innerHTML ="Please enter a valid Phone Number. E.g: 62811223344";
   }
   
+}
+
+function localPrefixHandler(phonenumber){
+  let prefix=phonenumber[0];
+  if (prefix == "0"){
+    phonenumber.replace(prefix,'62');
+  }
+  return phonenumber;
 }
