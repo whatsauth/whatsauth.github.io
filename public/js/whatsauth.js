@@ -84,3 +84,16 @@ function checkCookie() {
     document.getElementById("hasphonenumber").classList.add("hidden");
   }
 }
+
+
+function submitPhoneNumber(){
+  const btn = document.querySelector('#submit');
+  const form = document.querySelector('#loginform');
+  const messageEl = document.querySelector('#message');
+
+  btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      subscribe();
+  });
+
+}
