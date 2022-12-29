@@ -1,0 +1,5 @@
+{
+    "qr" : "content of qrcode",
+    "status" : "server address",
+    "message":"this is message"
+}
