@@ -76,11 +76,11 @@ function checkCookie() {
   let phonenumber = getCookie("phonenumber");
   if (phonenumber != "") {
     console.log("ga ada phone number");
-    document.getElementById("nophonenumber").classList.add = "hidden";
+    document.getElementById("nophonenumber").classList.add("hidden");
     document.getElementById("phonenumber").innerHTML = phonenumber;
   } else {
     console.log(phonenumber);
     console.log("ada phone number");
-    document.getElementById("hasphonenumber").classList.add = "hidden";
+    document.getElementById("hasphonenumber").classList.add(hidden);
   }
 }
