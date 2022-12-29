@@ -1,1 +1,2 @@
+import "path"
 getData(url);
