@@ -1,4 +1,4 @@
-const url="/public/qr/string.txt"
+const url="/public/qr/qr.json"
 
 async function getData(url) {
   let resp = await fetch(url);
