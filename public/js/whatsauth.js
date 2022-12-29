@@ -65,7 +65,7 @@ function checkCookie() {
   } else {
     phonenumber = prompt("Please enter your phone number :", "");
     if (phonenumber != "" && phonenumber != null) {
-      setCookie("phonenumber", phonenumber, 365);
+      setCookieWithExpireDay("phonenumber", phonenumber, 365);
     }
   }
 }
