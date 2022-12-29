@@ -80,7 +80,6 @@ function checkCookie() {
     document.getElementById("nophonenumber").classList.add("hidden");
     document.getElementById("phonenumber").innerHTML = phonenumber;
   } else {
-    
     console.log("ga ada phone number");
     document.getElementById("hasphonenumber").classList.add("hidden");
   }
