@@ -1,11 +1,5 @@
 const url="/public/qr/qr.json";
 
-let logoutbutton = `   <button onclick="changePhoneNumber()" class="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-0 px-1 border border-blue-500 hover:border-transparent rounded">
-Change
-</button>`;
-
-
-
 async function getData(url) {
   let resp = await fetch(url);
   let data = await resp.json();
@@ -75,7 +69,8 @@ function getCookie(cname) {
 function checkCookie() {
   let phonenumber = getCookie("phonenumber");
   if (phonenumber != "") {
-    document.getElementById("phonenumber").innerHTML = phonenumber+logoutbutton;
+    document.getElementById("phonenumber").innerHTML = phonenumber;
+    document.getElementById("changenumberbutton").style.display = "block";
   } else {
     phonenumber = prompt("Please enter your phone number :", "");
     if (phonenumber != "" && phonenumber != null) {
