@@ -1,6 +1,6 @@
 const url="/public/qr/qr.json";
 
-let logoutbutton = `   <button class="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded">
+let logoutbutton = `   <button class="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-0 px-1 border border-blue-500 hover:border-transparent rounded">
 Logout
 </button>`;
 
