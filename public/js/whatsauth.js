@@ -87,13 +87,7 @@ function checkCookie() {
 
 
 function submitPhoneNumber(){
-  const btn = document.querySelector('#submit');
-  const form = document.querySelector('#loginform');
-  const messageEl = document.querySelector('#message');
-
-  btn.addEventListener('click', (e) => {
-      e.preventDefault();
-      subscribe();
-  });
-
+  let loginform = document.getElementById("loginform");
+  let formData = new FormData(loginform);
+  console.log(formData.get('loginphonenumber'));
 }
