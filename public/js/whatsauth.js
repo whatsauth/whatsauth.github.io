@@ -43,7 +43,7 @@ function showQR(text){
 
 function changePhoneNumber(){
   deleteCookie("phonenumber");
-  console.log("phone number dihapus");
+  checkCookie();
 }
 
 function setCookieWithExpireDay(cname, cvalue, exdays) {
