@@ -89,9 +89,7 @@ function checkCookie() {
 
 
 function submitPhoneNumber(){
-  let loginform = document.getElementById("loginform");
-  let formData = new FormData(loginform);
-  let phonenumber = formData.get('loginphonenumber')
+  let phonenumber = document.getElementById("loginphonenumber").value;
   console.log(phonenumber);
   setPhoneNumber(phonenumber);
   checkCookie();
