@@ -83,6 +83,7 @@ function checkCookie() {
   } else {
     console.log("ga ada phone number");
     document.getElementById("hasphonenumber").classList.add("hidden");
+    document.getElementById("nophonenumber").classList.remove("hidden");
   }
 }
 
