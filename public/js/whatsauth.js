@@ -114,3 +114,13 @@ async function setUserAgent(){
   setCookieWithExpireDay("ipaddr", ipaddr, 365);
   setCookieWithExpireDay("agent", agent, 365);
 }
+
+function enterKeyPressed(event) {
+  let input = document.getElementById("loginphonenumber");
+  input.addEventListener("keypress", function(event) {
+    if (event.key === "Enter") {
+      event.preventDefault();
+      document.getElementById("loginbutton").click();
+    }
+  });
+} 
