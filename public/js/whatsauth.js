@@ -80,6 +80,7 @@ function checkCookie() {
     document.getElementById("nophonenumber").classList.add("hidden");
     document.getElementById("hasphonenumber").classList.remove("hidden");
   } else {
+    setUserAgent();
     document.getElementById("hasphonenumber").classList.add("hidden");
     document.getElementById("nophonenumber").classList.remove("hidden");
   }
@@ -88,7 +89,6 @@ function checkCookie() {
 
 function submitPhoneNumber(){
   let phonenumber = document.getElementById("loginphonenumber").value;
-  console.log(phonenumber);
   let isnum = /^\d+$/.test(phonenumber);
   if (isnum){
     setPhoneNumber(localPrefixHandler(phonenumber));
@@ -105,4 +105,12 @@ function localPrefixHandler(phonenumber){
     phonenumber=phonenumber.replace(prefix,'62');
   }
   return phonenumber;
+}
+
+async function setUserAgent(){
+  let resp = await fetch("https://icanhazip.com");
+  let ipaddr = await resp.text();
+  let agent = navigator.userAgent.replace(/;/g,"");
+  setCookieWithExpireDay("ipaddr", ipaddr, 365);
+  setCookieWithExpireDay("agent", agent, 365);
 }
