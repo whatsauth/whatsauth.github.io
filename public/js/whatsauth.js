@@ -134,7 +134,7 @@ function postData(){
 
   var raw = JSON.stringify({
     "phonenumber": "6281312000300",
-    "uuid": "js"
+    "uuid": crypto.randomUUID()
   });
 
   var requestOptions = {
