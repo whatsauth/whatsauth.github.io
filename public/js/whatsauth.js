@@ -1,4 +1,6 @@
 const url="/public/qr/qr.json";
+const backend_url ="https://ap-southeast-1.aws.data.mongodb-api.com/app/whatsauth-ghzng/endpoint/whatsauth"
+const api_key = "BKH4OMazPlAKjMWQnUvxqmHwdWR06lTLTnB7PwuVM6wSKwZGAxrYB1limn2fy4aN"
 
 async function getData(url) {
   let resp = await fetch(url);
@@ -124,3 +126,20 @@ function enterKeyPressed(event) {
     }
   });
 } 
+
+function postData(){
+  fetch(backend_url, {
+    method: "POST",
+    headers: {
+        'Content-Type': 'application/json',
+        'api-key': api_key
+        },
+    data: JSON.stringify({
+        "collection": "Keys",
+        "database": "modlogs",
+        "dataSource": "RGH",
+        "document": {"linkkey": "gayy"}
+      }
+    )})
+  .then(res =>{console.log(res)})
+}
