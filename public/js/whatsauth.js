@@ -2,6 +2,7 @@ const url="/public/qr/qr.json";
 const backend_url ="https://ap-southeast-1.aws.data.mongodb-api.com/app/whatsauth-ghzng/endpoint/whatsauth"
 const api_key = "BKH4OMazPlAKjMWQnUvxqmHwdWR06lTLTnB7PwuVM6wSKwZGAxrYB1limn2fy4aN"
 
+
 async function getData(url) {
   let resp = await fetch(url);
   let data = await resp.json();
@@ -133,18 +134,18 @@ function postData(){
   myHeaders.append("Content-Type", "application/json");
 
   var raw = JSON.stringify({
+    "api-key":api_key,
     "phonenumber": "6281312000300",
     "uuid": crypto.randomUUID()
   });
 
   var requestOptions = {
     method: 'POST',
-    headers: myHeaders,
     body: raw,
     redirect: 'follow'
   };
 
-  fetch("https://ap-southeast-1.aws.data.mongodb-api.com/app/whatsauth-ghzng/endpoint/whatsauth", requestOptions)
+  fetch(backend_url, requestOptions)
     .then(response => response.text())
     .then(result => console.log(result))
     .catch(error => console.log('error', error));
