@@ -129,9 +129,11 @@ function enterKeyPressed(event) {
 
 function postData(){
   fetch(backend_url, {
+    mode: "no-cors",
     method: "POST",
     headers: {
         'Content-Type': 'application/json',
+        'Access-Control-Request-Headers': '*',
         'api-key': api_key
         },
     data: JSON.stringify({
