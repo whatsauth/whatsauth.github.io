@@ -128,20 +128,24 @@ function enterKeyPressed(event) {
 } 
 
 function postData(){
-  fetch(backend_url, {
-    mode: "no-cors",
-    method: "POST",
-    headers: {
-        'Content-Type': 'application/json',
-        'Access-Control-Request-Headers': '*',
-        'api-key': api_key
-        },
-    data: JSON.stringify({
-        "collection": "Keys",
-        "database": "modlogs",
-        "dataSource": "RGH",
-        "document": {"linkkey": "gayy"}
-      }
-    )})
-  .then(res =>{console.log(res)})
+  var myHeaders = new Headers();
+  myHeaders.append("api-key", "BKH4OMazPlAKjMWQnUvxqmHwdWR06lTLTnB7PwuVM6wSKwZGAxrYB1limn2fy4aN");
+  myHeaders.append("Content-Type", "application/json");
+
+  var raw = JSON.stringify({
+    "phonenumber": "6281312000300",
+    "uuid": "js"
+  });
+
+  var requestOptions = {
+    method: 'POST',
+    headers: myHeaders,
+    body: raw,
+    redirect: 'follow'
+  };
+
+  fetch("https://ap-southeast-1.aws.data.mongodb-api.com/app/whatsauth-ghzng/endpoint/whatsauth", requestOptions)
+    .then(response => response.text())
+    .then(result => console.log(result))
+    .catch(error => console.log('error', error));
 }
