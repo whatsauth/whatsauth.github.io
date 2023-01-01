@@ -6,13 +6,6 @@ const keyword = "https://wa.me/628112000279?text=whatsauth%20"
 
 
 function main() {
-  let uuid = getCookie("uuid");
-  console.log('sebelum if : '+uuid);
-  if (uuid === "") {
-    setCookieWithExpireSecond("uuid",crypto.randomUUID(),30);
-    uuid = getCookie("uuid");
-    console.log('setelah if : '+uuid);
-  }
   qrController(uuid);
 }
 
