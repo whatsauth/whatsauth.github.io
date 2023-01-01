@@ -9,8 +9,9 @@ function main() {
   let uuid = getCookie("uuid");
   if (uuid != "") {
     setCookieWithExpireSecond("uuid",crypto.randomUUID(),10);
-    getCookie("uuid")
+    uuid = getCookie("uuid")
   }
+  console.log(uuid)
   qrController(uuid);
 }
 
