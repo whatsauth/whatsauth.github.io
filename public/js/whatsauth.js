@@ -17,6 +17,7 @@ function qrController() {
     uuid = getCookie("uuid");
   } else {
     showQR(keyword+uuid);
+    postData();
   }
   sleep();
 }
@@ -80,12 +81,12 @@ function getCookie(cname) {
 }
 
 function postData(){
-  var raw = JSON.stringify({
+  let raw = JSON.stringify({
     "api-key":api_key,
     "uuid": getCookie("uuid")
   });
 
-  var requestOptions = {
+  let requestOptions = {
     method: 'POST',
     body: raw,
     redirect: 'follow'
