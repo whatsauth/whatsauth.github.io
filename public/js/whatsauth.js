@@ -40,12 +40,7 @@ function qrController() {
     showQR(keyword+uuid);
     postData();
   }
-  sleep();
-}
-
-function sleep(){
-var refresh=1000; // Refresh rate in milli seconds
-mytime=setTimeout('qrController()',refresh)
+  setTimeout('qrController()',1000);
 }
 
 function makeQrCode(text){
