@@ -2,7 +2,7 @@ const url="/public/qr/qr.json";
 const backend_url ="https://ap-southeast-1.aws.data.mongodb-api.com/app/whatsauth-ghzng/endpoint/whatsauth"
 const api_key = "BKH4OMazPlAKjMWQnUvxqmHwdWR06lTLTnB7PwuVM6wSKwZGAxrYB1limn2fy4aN"
 const keyword = "https://wa.me/628112000279?text=whatsauth%20"
-
+const interval = 30
 
 
 function main() {
@@ -13,10 +13,11 @@ function main() {
 function qrController() {
   let uuid = getCookie("uuid");
   if (uuid === "") {
-    setCookieWithExpireSecond("uuid",crypto.randomUUID(),30);
+    setCookieWithExpireSecond("uuid",crypto.randomUUID(),interval);
     uuid = getCookie("uuid");
+  } else {
+    showQR(keyword+uuid);
   }
-  showQR(keyword+uuid);
   sleep();
 }
 
