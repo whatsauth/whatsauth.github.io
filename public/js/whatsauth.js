@@ -7,23 +7,29 @@ const keyword = "https://wa.me/628112000279?text=whatsauth%20"
 
 function main() {
   let uuid = getCookie("uuid");
-  if (uuid != "") {
+  console.log('sebelum if : '+uuid);
+  if (uuid === "") {
     setCookieWithExpireSecond("uuid",crypto.randomUUID(),30);
     uuid = getCookie("uuid");
+    console.log('setelah if : '+uuid);
   }
-  console.log(uuid);
   qrController(uuid);
 }
 
 
-function qrController(uuid) {
+function qrController() {
+  let uuid = getCookie("uuid");
+  if (uuid === "") {
+    setCookieWithExpireSecond("uuid",crypto.randomUUID(),30);
+    uuid = getCookie("uuid");
+  }
   showQR(keyword+uuid);
-  sleep(uuid);
+  sleep();
 }
 
-function sleep(uuid){
+function sleep(){
 var refresh=1000; // Refresh rate in milli seconds
-mytime=setTimeout('qrController('+uuid+')',refresh)
+mytime=setTimeout('qrController()',refresh)
 }
 
 function makeQrCode(text){
