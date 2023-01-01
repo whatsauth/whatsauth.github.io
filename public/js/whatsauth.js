@@ -10,10 +10,31 @@ function main() {
 }
 
 
+function generatePassword() {
+  var length = 8,
+      charset = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789",
+      retVal = "";
+  for (var i = 0, n = charset.length; i < length; ++i) {
+      retVal += charset.charAt(Math.floor(Math.random() * n));
+  }
+  return retVal;
+}
+
+async function hashtosha512(str) {
+  return crypto.subtle.digest("SHA-512", new TextEncoder("utf-8").encode(str)).then(buf => {
+    return Array.prototype.map.call(new Uint8Array(buf), x=>(('00'+x.toString(16)).slice(-2))).join('');
+  });
+}
+
+function generateUUID(){
+  let a=crypto.randomUUID()+generatePassword();
+  return hashtosha512(a);
+}
+
 function qrController() {
   let uuid = getCookie("uuid");
   if (uuid === "") {
-    setCookieWithExpireSecond("uuid",crypto.randomUUID(),interval);
+    setCookieWithExpireSecond("uuid",generateUUID(),interval);
     uuid = getCookie("uuid");
   } else {
     showQR(keyword+uuid);
