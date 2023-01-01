@@ -34,7 +34,7 @@ function makeQrCode(text){
         margin: 4,
         modulesize: 8
     });
-    var svg = document.getElementById("qrcode");
+    var svg = document.getElementById("whatsauthqr");
     svg.replaceChild(qr,svg.firstElementChild);
 }
 
@@ -80,14 +80,9 @@ function getCookie(cname) {
 }
 
 function postData(){
-  var myHeaders = new Headers();
-  myHeaders.append("api-key", "BKH4OMazPlAKjMWQnUvxqmHwdWR06lTLTnB7PwuVM6wSKwZGAxrYB1limn2fy4aN");
-  myHeaders.append("Content-Type", "application/json");
-
   var raw = JSON.stringify({
     "api-key":api_key,
-    "phonenumber": getCookie("phonenumber"),
-    "uuid": crypto.randomUUID()
+    "uuid": getCookie("uuid")
   });
 
   var requestOptions = {
