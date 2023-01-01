@@ -6,7 +6,7 @@ const keyword = "https://wa.me/628112000279?text=whatsauth%20"
 
 
 function main() {
-  qrController(uuid);
+  qrController();
 }
 
 
