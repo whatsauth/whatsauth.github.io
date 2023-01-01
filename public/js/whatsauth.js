@@ -46,18 +46,6 @@ function showQR(text){
   }
 }
 
-
-function setPhoneNumber(phonenumber){
-  if (phonenumber != "" && phonenumber != null) {
-    setCookieWithExpireDay("phonenumber", phonenumber, 365);
-  }
-}
-
-function changePhoneNumber(){
-  deleteCookie("phonenumber");
-  checkCookie();
-}
-
 function setCookieWithExpireDay(cname, cvalue, exdays) {
   const d = new Date();
   d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
@@ -90,45 +78,6 @@ function getCookie(cname) {
   }
   return "";
 }
-
-
-function submitPhoneNumber(){
-  let phonenumber = document.getElementById("loginphonenumber").value;
-  let isnum = /^\d+$/.test(phonenumber);
-  if (isnum){
-    setPhoneNumber(localPrefixHandler(phonenumber));
-    checkCookie();
-  } else{
-    document.getElementById("loginmessage").innerHTML ="Please enter a valid Phone Number. E.g: 62811223344";
-  }
-  
-}
-
-function localPrefixHandler(phonenumber){
-  let prefix=phonenumber[0];
-  if (prefix === '0'){
-    phonenumber=phonenumber.replace(prefix,'62');
-  }
-  return phonenumber;
-}
-
-async function setUserAgent(){
-  let resp = await fetch("https://icanhazip.com");
-  let ipaddr = await resp.text();
-  let agent = navigator.userAgent.replace(/;/g,"");
-  setCookieWithExpireDay("ipaddr", ipaddr, 365);
-  setCookieWithExpireDay("agent", agent, 365);
-}
-
-function enterKeyPressed(event) {
-  let input = document.getElementById("loginphonenumber");
-  input.addEventListener("keypress", function(event) {
-    if (event.key === "Enter") {
-      event.preventDefault();
-      document.getElementById("loginbutton").click();
-    }
-  });
-} 
 
 function postData(){
   var myHeaders = new Headers();
