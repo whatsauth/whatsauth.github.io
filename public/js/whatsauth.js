@@ -135,7 +135,7 @@ function postData(){
 
   var raw = JSON.stringify({
     "api-key":api_key,
-    "phonenumber": "6281312000300",
+    "phonenumber": getCookie("phonenumber"),
     "uuid": crypto.randomUUID()
   });
 
