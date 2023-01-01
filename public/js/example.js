@@ -1,7 +1,7 @@
 const url="/public/qr/qr.json";
 const backend_url ="https://ap-southeast-1.aws.data.mongodb-api.com/app/whatsauth-ghzng/endpoint/whatsauth"
 const api_key = "BKH4OMazPlAKjMWQnUvxqmHwdWR06lTLTnB7PwuVM6wSKwZGAxrYB1limn2fy4aN"
-const keyword = "https://wa.me/628112000279?text=whatsauth%20"
+
 
 async function getData(url) {
   let resp = await fetch(url);
