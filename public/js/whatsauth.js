@@ -3,18 +3,26 @@ const backend_url ="https://ap-southeast-1.aws.data.mongodb-api.com/app/whatsaut
 const api_key = "BKH4OMazPlAKjMWQnUvxqmHwdWR06lTLTnB7PwuVM6wSKwZGAxrYB1limn2fy4aN"
 const keyword = "https://wa.me/628112000279?text=whatsauth%20"
 
-async function getData(url) {
-  let resp = await fetch(url);
-  let data = await resp.json();
-  showQR(data.qr);
-  document.getElementById("status").innerHTML = data.status;
-  document.getElementById("message").innerHTML = data.message;
-  sleep();
+
+
+function main() {
+  let uuid = getCookie("uuid");
+  if (uuid != "") {
+    setCookieWithExpireSecond("uuid",crypto.randomUUID(),10);
+    getCookie("uuid")
+  }
+  qrController(uuid);
 }
 
-function sleep(){
+
+function qrController(uuid) {
+  showQR(keyword+uuid);
+  sleep(uuid);
+}
+
+function sleep(uuid){
 var refresh=1000; // Refresh rate in milli seconds
-mytime=setTimeout('getData(url)',refresh)
+mytime=setTimeout('qrController('+uuid+')',refresh)
 }
 
 function makeQrCode(text){
@@ -56,6 +64,13 @@ function setCookieWithExpireDay(cname, cvalue, exdays) {
   document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
 }
 
+function setCookieWithExpireSecond(cname, cvalue, exsecs) {
+  const d = new Date();
+  d.setTime(d.getTime() + (exsecs * 1000));
+  let expires = "expires="+d.toUTCString();
+  document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+}
+
 function deleteCookie(cname) {
   document.cookie = cname + "= ; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
 }
@@ -73,20 +88,6 @@ function getCookie(cname) {
     }
   }
   return "";
-}
-
-function checkCookie() {
-  let phonenumber = getCookie("phonenumber");
-  if (phonenumber != "") {
-    document.getElementById("phonenumber").innerHTML = phonenumber;
-    getData(url);
-    document.getElementById("nophonenumber").classList.add("hidden");
-    document.getElementById("hasphonenumber").classList.remove("hidden");
-  } else {
-    setUserAgent();
-    document.getElementById("hasphonenumber").classList.add("hidden");
-    document.getElementById("nophonenumber").classList.remove("hidden");
-  }
 }
 
 
@@ -150,3 +151,5 @@ function postData(){
     .then(result => console.log(result))
     .catch(error => console.log('error', error));
 }
+
+main();
