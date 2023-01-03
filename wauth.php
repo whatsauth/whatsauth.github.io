@@ -1,6 +1,8 @@
 <?php
+header('Access-Control-Allow-Origin: https://sip.ulbi.ac.id');
+header('Access-Control-Allow-Headers:  Content-Type, X-Auth-Token, Authorization, Origin');
+header('Access-Control-Allow-Methods:  POST');
 
-// edit rolly
 $url = 'http://10.14.200.20:3333/whatsauth';
 $ch = curl_init($url);
 $data = array(
