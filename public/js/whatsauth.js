@@ -1,9 +1,13 @@
-const url="/public/qr/qr.json";
-const backend_url ="https://ap-southeast-1.aws.data.mongodb-api.com/app/whatsauth-ghzng/endpoint/whatsauth"
-const api_key = "BKH4OMazPlAKjMWQnUvxqmHwdWR06lTLTnB7PwuVM6wSKwZGAxrYB1limn2fy4aN"
-const keyword = "https://wa.me/628112000279?text=whatsauth%20"
-const interval = 30
-
+/*jslint browser */
+/*global process */
+const backend_url ="https://sip.ulbi.ac.id/wauth.php";
+const login_url ="https://sip.ulbi.ac.id/besan.depan.php";
+const api_key = "BKH4OMazPlAKjMWQnUvxqmHwdWR06lTLTnB7PwuVM6wSKwZGAxrYB1limn2fy4aN";
+const keyword = "https://wa.me/628112000279?text=wh4t5auth0";
+const interval = 30;
+const maxqrwait = 70;
+let jsonres;
+let rto =0;
 
 function main() {
   qrController();
@@ -11,13 +15,14 @@ function main() {
 
 
 function generatePassword() {
-  var length = 8,
-      charset = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789",
-      retVal = "";
-  for (var i = 0, n = charset.length; i < length; ++i) {
-      retVal += charset.charAt(Math.floor(Math.random() * n));
-  }
-  return retVal;
+  var chars = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+  var passwordLength = 17;
+  var password = "";
+  for (var i = 0; i <= passwordLength; i++) {
+    var randomNumber = Math.floor(Math.random() * chars.length);
+    password += chars.substring(randomNumber, randomNumber +1);
+   }
+  return password;
 }
 
 async function hashtosha512(str) {
@@ -27,20 +32,34 @@ async function hashtosha512(str) {
 }
 
 function generateUUID(){
-  let a=crypto.randomUUID()+generatePassword();
-  return hashtosha512(a);
+  let a=crypto.randomUUID()+"."+generatePassword()+"."+crypto.randomUUID()+"."+generatePassword()+"."+crypto.randomUUID()+"."+generatePassword()+"."+crypto.randomUUID();
+  return a;
 }
 
-function qrController() {
+function getUUID(){
   let uuid = getCookie("uuid");
   if (uuid === "") {
     setCookieWithExpireSecond("uuid",generateUUID(),interval);
     uuid = getCookie("uuid");
-  } else {
-    showQR(keyword+uuid);
-    postData();
   }
-  setTimeout('qrController()',1000);
+  return uuid
+}
+
+function qrController() {
+  let uuid = getUUID();
+  let user_name = getCookie("user_name");
+  showQR(keyword+uuid);
+  rto++;
+  if (user_name === "" || user_name === "undefined"){
+    if (rto < maxqrwait){
+      postData();
+      setTimeout('qrController()',1000);
+    }else{
+      document.getElementById("whatsauthqr").innerHTML = "Refresh Your Browser to get QR";
+    }
+  }else{
+    submitLogin();
+  }
 }
 
 function makeQrCode(text){
@@ -97,21 +116,45 @@ function getCookie(cname) {
 }
 
 function postData(){
-  let raw = JSON.stringify({
-    "api-key":api_key,
-    "uuid": getCookie("uuid")
-  });
+  var myHeaders = new Headers();
+  myHeaders.append("Content-Type", "application/x-www-form-urlencoded");
 
-  let requestOptions = {
+  var urlencoded = new URLSearchParams();
+  urlencoded.append("uuid", getCookie("uuid"));
+
+  var requestOptions = {
     method: 'POST',
-    body: raw,
+    headers: myHeaders,
+    body: urlencoded,
     redirect: 'follow'
   };
 
   fetch(backend_url, requestOptions)
-    .then(response => response.text())
-    .then(result => console.log(result))
-    .catch(error => console.log('error', error));
+  .then(response => response.text())
+  .then(result => catcher(result))
+  .catch(error => console.log('error', error));
 }
+
+function fillformLogin(resjson){
+  document.getElementById("user_name").value = resjson.user_name;
+  document.getElementById("user_pass").value = resjson.user_pass;
+}
+
+function submitLogin(){
+  document.getElementById("whatsauthqr").innerHTML = "Login...";
+  document.getElementById("loginform").submit();
+}
+
+function catcher(result){
+  //let res = JSON.parse(result);
+  if (result.length > 2){
+    jsonres = JSON.parse(result);
+    console.log("catcher dari postdata");
+    console.log(jsonres);
+    setCookieWithExpireSecond("user_name",jsonres.user_name,interval);
+    fillformLogin(jsonres);
+  }
+}
+
 
 main();
