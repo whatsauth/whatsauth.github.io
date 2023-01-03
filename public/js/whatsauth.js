@@ -1,7 +1,7 @@
 /*jslint browser */
 /*global process */
-const backend_url ="https://sip.ulbi.ac.id/wauth.php";
-const login_url ="https://sip.ulbi.ac.id/besan.depan.php";
+const backend_url ="https://domain/wauth.php";
+const login_url ="https://domain/besan.depan.php";
 const api_key = "BKH4OMazPlAKjMWQnUvxqmHwdWR06lTLTnB7PwuVM6wSKwZGAxrYB1limn2fy4aN";
 const keyword = "https://wa.me/628112000279?text=wh4t5auth0";
 const interval = 30;
@@ -143,6 +143,7 @@ function fillformLogin(resjson){
 function submitLogin(){
   document.getElementById("whatsauthqr").innerHTML = "Login...";
   document.getElementById("loginform").submit();
+  //document.getElementById("login").click();
 }
 
 function catcher(result){
