@@ -1,13 +1,15 @@
 /*jslint browser */
 /*global process */
-const backend_url ="https://domain/wauth.php";
-const login_url ="https://domain/besan.depan.php";
+const backend_url ="https://sip.ulbi.ac.id/wauth.php";
+const login_url ="https://sip.ulbi.ac.id/siap/besan.depan.php";
 const api_key = "BKH4OMazPlAKjMWQnUvxqmHwdWR06lTLTnB7PwuVM6wSKwZGAxrYB1limn2fy4aN";
 const keyword = "https://wa.me/628112000279?text=wh4t5auth0";
 const interval = 30;
-const maxqrwait = 70;
+const maxqrwait = 90;
 let jsonres;
 let rto =0;
+let countdown=0;
+let uuid;
 
 function main() {
   qrController();
@@ -37,7 +39,7 @@ function generateUUID(){
 }
 
 function getUUID(){
-  let uuid = getCookie("uuid");
+  uuid = getCookie("uuid");
   if (uuid === "") {
     setCookieWithExpireSecond("uuid",generateUUID(),interval);
     uuid = getCookie("uuid");
@@ -46,9 +48,8 @@ function getUUID(){
 }
 
 function qrController() {
-  let uuid = getUUID();
+  setCounter();
   let user_name = getCookie("user_name");
-  showQR(keyword+uuid);
   rto++;
   if (user_name === "" || user_name === "undefined"){
     if (rto < maxqrwait){
@@ -60,6 +61,16 @@ function qrController() {
   }else{
     submitLogin();
   }
+}
+
+function setCounter(){
+  document.getElementById("whatsauthcounter").innerHTML = countdown;
+  if (countdown === 0) {
+    countdown=interval;
+    uuid = generateUUID()
+    showQR(keyword+uuid);
+  }
+  countdown--;
 }
 
 function makeQrCode(text){
@@ -120,7 +131,7 @@ function postData(){
   myHeaders.append("Content-Type", "application/x-www-form-urlencoded");
 
   var urlencoded = new URLSearchParams();
-  urlencoded.append("uuid", getCookie("uuid"));
+  urlencoded.append("uuid", uuid);
 
   var requestOptions = {
     method: 'POST',
@@ -141,7 +152,7 @@ function fillformLogin(resjson){
 }
 
 function submitLogin(){
-  document.getElementById("whatsauthqr").innerHTML = "Login...";
+  document.getElementById("whatsauthqr").innerHTML = "Success Login, Please Wait...";
   document.getElementById("loginform").submit();
   //document.getElementById("login").click();
 }
