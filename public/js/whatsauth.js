@@ -1,20 +1,69 @@
 /*jslint browser */
 /*global process */
-const backend_url ="https://sip.ulbi.ac.id/wauth.php";
-const login_url ="https://sip.ulbi.ac.id/siap/besan.depan.php";
+const auth_ws = 'd3NzOi8vYXV0aC51bGJpLmFjLmlkL3dzL3doYXRzYXV0aC9xcg==';
 const api_key = "BKH4OMazPlAKjMWQnUvxqmHwdWR06lTLTnB7PwuVM6wSKwZGAxrYB1limn2fy4aN";
-const keyword = "https://wa.me/628112000279?text=wh4t5auth0";
+const keyword = 'aHR0cHM6Ly93YS5tZS82MjgxMTIwMDAyNzk/dGV4dD13aDR0NWF1dGgw';
+const apphost = btoa(document.location.host);
 const interval = 30;
 const maxqrwait = 90;
 let jsonres;
 let rto =0;
 let countdown=0;
 let uuid;
+let wsocket=0;
 
 function main() {
   qrController();
+
 }
 
+function connect(id) {
+  return new Promise(function(resolve, reject) {
+      let wsconn = new WebSocket(atob(auth_ws));
+      wsconn.onopen = function() {
+        wsconn.send(id);
+        console.log("connected and set id");
+        resolve(wsconn);
+      };
+      wsconn.onerror = function(err) {
+        console.log("socket error rejected");
+        reject(err);
+      };
+      wsconn.onclose = function (evt) {
+        console.log("connection closed");
+      };
+      wsconn.onmessage = function (evt) {
+        let messages = evt.data;
+        console.log("incoming message");
+        catcher(messages);
+      };
+
+  });
+}
+
+function openWebSocketSetId(id){
+  if (window["WebSocket"]) { //check browser support
+    connect(id).then(function(server) {
+      wsocket=server;
+    }).catch(function(err) {
+      console.log("socket error");
+    });
+  } else {
+      alert("Please Update Your browser to the latest version.");
+  }
+}
+
+function closeWebSocket(){
+  if (wsocket !== 0){
+    wsocket.close();
+  }
+}
+
+function sendMessagetoWebSocket(msg){
+  if (wsocket.readyState === WebSocket.OPEN){
+    wsocket.send(msg);
+  }
+}
 
 function generatePassword() {
   var chars = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
@@ -34,7 +83,7 @@ async function hashtosha512(str) {
 }
 
 function generateUUID(){
-  let a=crypto.randomUUID()+"."+generatePassword()+"."+crypto.randomUUID()+"."+generatePassword()+"."+crypto.randomUUID()+"."+generatePassword()+"."+crypto.randomUUID();
+  let a=crypto.randomUUID()+"."+generatePassword()+"."+crypto.randomUUID()+"."+generatePassword()+"."+crypto.randomUUID()+"."+generatePassword()+"."+crypto.randomUUID()+"."+apphost;
   return a;
 }
 
@@ -48,27 +97,23 @@ function getUUID(){
 }
 
 function qrController() {
-  setCounter();
-  let user_name = getCookie("user_name");
+  setCounterandQR();
   rto++;
-  if (user_name === "" || user_name === "undefined"){
-    if (rto < maxqrwait){
-      postData();
-      setTimeout('qrController()',1000);
-    }else{
-      document.getElementById("whatsauthqr").innerHTML = "Refresh Your Browser to get QR";
-    }
+  if (rto < maxqrwait){
+    setTimeout('qrController()',1000);
   }else{
-    submitLogin();
+    document.getElementById("whatsauthqr").innerHTML = "Refresh Your Browser to get QR";
   }
 }
 
-function setCounter(){
+function setCounterandQR(){
   document.getElementById("whatsauthcounter").innerHTML = countdown;
   if (countdown === 0) {
+    closeWebSocket();
     countdown=interval;
-    uuid = generateUUID()
-    showQR(keyword+uuid);
+    uuid = generateUUID();
+    showQR(atob(keyword)+uuid);
+    openWebSocketSetId(uuid);
   }
   countdown--;
 }
@@ -126,26 +171,6 @@ function getCookie(cname) {
   return "";
 }
 
-function postData(){
-  var myHeaders = new Headers();
-  myHeaders.append("Content-Type", "application/x-www-form-urlencoded");
-
-  var urlencoded = new URLSearchParams();
-  urlencoded.append("uuid", uuid);
-
-  var requestOptions = {
-    method: 'POST',
-    headers: myHeaders,
-    body: urlencoded,
-    redirect: 'follow'
-  };
-
-  fetch(backend_url, requestOptions)
-  .then(response => response.text())
-  .then(result => catcher(result))
-  .catch(error => console.log('error', error));
-}
-
 function fillformLogin(resjson){
   document.getElementById("user_name").value = resjson.user_name;
   document.getElementById("user_pass").value = resjson.user_pass;
@@ -158,13 +183,12 @@ function submitLogin(){
 }
 
 function catcher(result){
-  //let res = JSON.parse(result);
   if (result.length > 2){
     jsonres = JSON.parse(result);
-    console.log("catcher dari postdata");
-    console.log(jsonres);
+    console.log("catcher runner");
     setCookieWithExpireSecond("user_name",jsonres.user_name,interval);
     fillformLogin(jsonres);
+    submitLogin();
   }
 }
 
