@@ -36,7 +36,7 @@ import (
 	"github.com/gin-gonic/gin"
 	"github.com/whatsauth/whatsauth"
 	"auth-service/config"
-	"gitlab.com/informatics-research-center/auth-service/model"
+	"auth-service/model"
 )
 
 func WsWhatsAuthQR(c *gin.Context) {
