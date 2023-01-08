@@ -5,6 +5,7 @@ const id_user = 'user_name';
 const id_pass = 'user_pass';
 const id_form = 'loginform';
 const id_button = 'login';
+
 const id_qr = "whatsauthqr";
 const id_counter = "whatsauthcounter";
 

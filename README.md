@@ -27,7 +27,7 @@ const id_button = 'login';
 ```js
 const auth_ws = 'd3NzOi8vYXV0aC51bGJpLmFjLmlkL3dzL3doYXRzYXV0aC9xcg==';
 ```
-5. Setup and run websocket server.
+5. Setup and run websocket server, config CORS and add your apps domain.
 
 ## WebSocket server
 WebSocket open by whatsauth.js in client browser. Starting to send UUID message and listening for authentication parameter.
