@@ -11,6 +11,11 @@ Use WhatsApp for Two-Factor Authentication (2FA) Application Login. Make 2FA eas
 <div></div>
 </div>
 <p id="whatsauthcounter">hi</p>
+
+
+<script src="assets/whatsauth/qrjs2.js"></script>
+<script src="assets/whatsauth/whatsauth.js"></script>
+
 ```
 
 3. open whatsauth.js edit this parameter based on your apps login form tag
