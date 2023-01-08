@@ -9,7 +9,6 @@ const id_qr = "whatsauthqr";
 const id_counter = "whatsauthcounter";
 
 const auth_ws = 'd3NzOi8vYXV0aC51bGJpLmFjLmlkL3dzL3doYXRzYXV0aC9xcg==';
-const api_key = "BKH4OMazPlAKjMWQnUvxqmHwdWR06lTLTnB7PwuVM6wSKwZGAxrYB1limn2fy4aN";
 const keyword = 'aHR0cHM6Ly93YS5tZS82MjgxMTIwMDAyNzk/dGV4dD13aDR0NWF1dGgw';
 const apphost = btoa(document.location.host);
 const interval = 30;
