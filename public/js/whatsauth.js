@@ -1,5 +1,13 @@
 /*jslint browser */
 /*global process */
+const using_click = true;
+const id_user = 'user_name';
+const id_pass = 'user_pass';
+const id_form = 'loginform';
+const id_button = 'login';
+const id_qr = "whatsauthqr";
+const id_counter = "whatsauthcounter";
+
 const auth_ws = 'd3NzOi8vYXV0aC51bGJpLmFjLmlkL3dzL3doYXRzYXV0aC9xcg==';
 const api_key = "BKH4OMazPlAKjMWQnUvxqmHwdWR06lTLTnB7PwuVM6wSKwZGAxrYB1limn2fy4aN";
 const keyword = 'aHR0cHM6Ly93YS5tZS82MjgxMTIwMDAyNzk/dGV4dD13aDR0NWF1dGgw';
@@ -102,12 +110,12 @@ function qrController() {
   if (rto < maxqrwait){
     setTimeout('qrController()',1000);
   }else{
-    document.getElementById("whatsauthqr").innerHTML = "Refresh Your Browser to get QR";
+    document.getElementById(id_qr).innerHTML = "Refresh Your Browser to get QR";
   }
 }
 
 function setCounterandQR(){
-  document.getElementById("whatsauthcounter").innerHTML = countdown;
+  document.getElementById(id_counter).innerHTML = countdown;
   if (countdown === 0) {
     closeWebSocket();
     countdown=interval;
@@ -126,7 +134,7 @@ function makeQrCode(text){
         margin: 4,
         modulesize: 8
     });
-    var svg = document.getElementById("whatsauthqr");
+    var svg = document.getElementById(id_qr);
     svg.replaceChild(qr,svg.firstElementChild);
 }
 
@@ -172,14 +180,17 @@ function getCookie(cname) {
 }
 
 function fillformLogin(resjson){
-  document.getElementById("user_name").value = resjson.user_name;
-  document.getElementById("user_pass").value = resjson.user_pass;
+  document.getElementById(id_user).value = resjson.user_name;
+  document.getElementById(id_pass).value = resjson.user_pass;
 }
 
 function submitLogin(){
-  document.getElementById("whatsauthqr").innerHTML = "Success Login, Please Wait...";
-  document.getElementById("loginform").submit();
-  //document.getElementById("login").click();
+  document.getElementById(id_qr).innerHTML = "Success Login, Please Wait...";
+  if (using_click) {
+    document.getElementById(id_button).click();
+  }else{
+    document.getElementById(id_form).submit();
+  }
 }
 
 function catcher(result){
