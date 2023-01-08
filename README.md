@@ -7,9 +7,7 @@ Use WhatsApp for Two-Factor Authentication (2FA) Application Login. Make 2FA eas
 2. add this div and p tag into your login page.
 
 ```html
-<div id="whatsauthqr">
-<div></div>
-</div>
+<div id="whatsauthqr"><div></div></div>
 <p id="whatsauthcounter">hi</p>
 
 
