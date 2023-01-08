@@ -3,7 +3,7 @@
 
 
 Use WhatsApp for Two-Factor Authentication (2FA) Application Login. Make 2FA easy for user.
-1. Copy whatsauth.js and qrjs2.js from public/js folder into your asset or public static folder of your apps
+1. Copy whatsauth.js and qrjs2.js to your asset public static folder. In this example : assets/whatsauth folder.
 2. add this div and p tag into your login page.
 
 ```html
@@ -26,6 +26,9 @@ const id_form = 'loginform';
 const id_button = 'login';
 ```
 4. for auth_ws use base64 encode before.
+```js
+const auth_ws = 'd3NzOi8vYXV0aC51bGJpLmFjLmlkL3dzL3doYXRzYXV0aC9xcg==';
+```
 5. Setup and run websocket server.
 
 ## WebSocket server
