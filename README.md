@@ -6,6 +6,6 @@ Implementing Simple Authentication Single Sign On using Whatsapp
 
 Follow this [readme section](https://github.com/whatsauth/wauthjs)
 
-## WebSocket server
+## Backend
 
 Follow this [readme section](https://github.com/whatsauth/whatsauth)
