@@ -1,6 +1,7 @@
 # whatsauth : WhatsApp for Authentication
 
-Implementing Simple Authentication Single Sign On using Whatsapp
+Implementing Simple Authentication Single Sign On using Whatsapp.
+[Demo](https://whatsauth.github.io/wauthjs/)
 
 ## Frontend 
 
