@@ -4,7 +4,7 @@ Implementing Simple Authentication Single Sign On using Whatsapp
 
 ## Frontend 
 
-Follow this [section](./wauthjs)
+Follow this [readme section](https://github.com/whatsauth/wauthjs)
 
 ## WebSocket server
 WebSocket open by whatsauth.js in client browser. Starting to send UUID message and listening for authentication parameter.
