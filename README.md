@@ -12,7 +12,6 @@ WhatsAuth menghadirkan solusi untuk :
 Tahapan ini dilakukan terlebih dahulu sebelum melakukan pendaftaran, hal-hal yang harus dipersiapkan antara lain:
 1. Siapkan Nomor WhatsApp yang akan dijadikan Gateway API
 2. Siapkan WebHook sebagai penerima pesan masuk. [Contoh Kode WebHook](https://github.com/whatsauth/webhook)
-3. [Opsional jika dibutuhkan] Siapkan laman login untuk aplikasi login menggunakan QRCode
 
 ## Pendaftaran WhatsApp Gateway
 Proses runutan pendaftaran API melalui :
@@ -30,4 +29,6 @@ Proses runutan pendaftaran API melalui :
    ![WhatsApp Image 2023-11-07 at 01 07 39_e0a1d259](https://github.com/whatsauth/whatsauth.github.io/assets/11188109/249fab3a-7bba-4b50-b160-41cd6fa825db)  
 6. Mencoba mengirimkan notif pesan kepada nomor telepon tujuan. Buka API message klik Try it out, isi to,isgroup dan message. Ketika klik execute maka akan ada notif pesan ke nomor tujuan dari nomor Gateway yang didaftarkan.
    ![image](https://github.com/whatsauth/whatsauth.github.io/assets/11188109/74d73883-2c91-4c22-a35c-1a4e2ef88977)  
-7. [Opsional] API whatsauth digunakan untuk pengembangan lanjutan, jika anda ingin melakukan implementasi SSO, login menggunakan QR, implementasikan deploy dahulu [JS ini](https://github.com/whatsauth/js).
+
+## QRCode Login
+API whatsauth dapat digunakan untuk pengembangan implementasi SSO, login menggunakan QR. Caranya deploy dahulu [JS ini](https://github.com/whatsauth/js).
