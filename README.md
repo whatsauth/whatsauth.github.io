@@ -19,6 +19,7 @@ Proses runutan pendaftaran API melalui :
 1. Buka website [wa.my.id](https://wa.my.id) kemudian scan QR Code dengan menggunakan WhatsApp yang akan dijadikan API Gateway.Jika berhasil masuk akan mendapatkan token sementara yang berlaku 2 jam.  
    ![image](https://github.com/whatsauth/whatsauth.github.io/assets/11188109/b8689bbb-25f4-44fc-8356-231844e24a8f)   
 2. Buka web [apidocs](https://wa.my.id/apidocs/) klik bagian Authorize dan masukkan token ke dalam kolom Value: dan klik Authorize  
+   ![image](https://github.com/whatsauth/whatsauth.github.io/assets/11188109/78d313a7-345f-40fe-9cf6-7cbf58fbba2e)  
    ![image](https://github.com/whatsauth/whatsauth.github.io/assets/11188109/54826caf-597a-4151-938c-bbb077b23741)  
 3. Klik API signup, klik Try it out. Kemudian masukkan URL dan Secret dari WebHook yang sudah dibuat sebelumnya. Lihat respon, simpan baik baik token yang diterima, token tersebut berlaku selama 30 hari.
    ![image](https://github.com/whatsauth/whatsauth.github.io/assets/11188109/fd89a320-3228-4cad-85d8-ecefd9a324e5)  
