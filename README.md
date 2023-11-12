@@ -42,6 +42,7 @@ Proses runutan pendaftaran API melalui :
    ![WhatsApp Image 2023-11-07 at 01 07 39_e0a1d259](https://github.com/whatsauth/whatsauth.github.io/assets/11188109/249fab3a-7bba-4b50-b160-41cd6fa825db)  
    Tunggu beberapa menit hingga proses sinkronisasi WhatsApp selesai berjalan.
 6. Start device pada bagian API device. Klik Try it out, kemudian masukkan token pada langkah sebelumnya. Ketika execute, maka akan ada balasan message dari server.
+   ![image](https://github.com/whatsauth/whatsauth.github.io/assets/11188109/2eaf0098-6e91-4733-b7ca-96e2483e5b58)  
 7. Mencoba mengirimkan notif pesan kepada nomor telepon tujuan. Buka API message klik Try it out, isi to,isgroup dan message. Ketika klik execute maka akan ada notif pesan ke nomor tujuan dari nomor Gateway yang didaftarkan.
    ![image](https://github.com/whatsauth/whatsauth.github.io/assets/11188109/74d73883-2c91-4c22-a35c-1a4e2ef88977)  
 
