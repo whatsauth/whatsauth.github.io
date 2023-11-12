@@ -18,6 +18,10 @@ Proses nya tinggal buka [wa.my.id](https://wa.my.id) dengan urutan :
 1. Scan QR Code dengan scanner QR atau fitur foto dari whatsapp, kakak akan diarahkan masuk ke dalam situs.
 2. Input URL dan Secret Webhook kakak terus klik submit.
 3. Masukkan Pair Code ke WhatsApp yang ada di Handphone tunggu beberapa saat sampai proses loading di handphone selesai.
+   ![WhatsApp Image 2023-11-07 at 01 07 50_3f9cbb85](https://github.com/whatsauth/whatsauth.github.io/assets/11188109/a3e3bca7-d78e-4f74-a2fb-34ef850e91c3)  
+   ![WhatsApp Image 2023-11-07 at 01 07 45_d9155096](https://github.com/whatsauth/whatsauth.github.io/assets/11188109/9e44609e-321d-43f6-b760-6a8f038a7411)  
+   ![WhatsApp Image 2023-11-07 at 01 07 39_e0a1d259](https://github.com/whatsauth/whatsauth.github.io/assets/11188109/249fab3a-7bba-4b50-b160-41cd6fa825db)  
+   Tunggu beberapa menit hingga proses sinkronisasi WhatsApp selesai berjalan.
 4. Klik menu Start Device, klik tombol start device untuk memulai menggunakan WhatsApp API dari nomor whatsapp kakak.
 5. Masuk menu Kirim Pesan untuk mengirimkan pesan
 6. Dokumen api ada di wa.my.id/apidocs
