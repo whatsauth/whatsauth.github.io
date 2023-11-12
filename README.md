@@ -13,9 +13,9 @@ Tahapan ini dilakukan terlebih dahulu sebelum melakukan pendaftaran, hal-hal yan
 1. Siapkan Nomor WhatsApp yang akan dijadikan Gateway API
 2. Siapkan WebHook sebagai penerima pesan masuk, jika anda ingin melakukan test apa saja yang dikirim ke webhook bisa menggunakan layanan pipedream.com. Untuk [Contoh Kode WebHook](./webhook)
 
-## Pendaftaran WhatsApp Gateway
+## Pendaftaran WhatsApp Gateway Melalui API
 Proses runutan pendaftaran API melalui :
-1. Buka website [wa.my.id](https://wa.my.id) kemudian scan QR Code dengan menggunakan WhatsApp yang akan dijadikan API Gateway.Jika berhasil masuk akan mendapatkan token sementara yang berlaku 2 jam.  
+1. Buka website [wa.my.id](https://wa.my.id) kemudian scan QR Code dengan menggunakan WhatsApp yang akan dijadikan API Gateway.Jika berhasil masuk, silahkan inputkan URL dan Secret WebHook kakak. Setelah klik submit maka akan mendapatkan token untuk akses API dan kode untuk pairing(Pair Code) dengan HP kakak.  
    ![image](https://github.com/whatsauth/whatsauth.github.io/assets/11188109/b8689bbb-25f4-44fc-8356-231844e24a8f)   
 2. Buka web [apidocs](https://wa.my.id/apidocs/) klik bagian Authorize dan masukkan token ke dalam kolom Value: dan klik Authorize  
    ![image](https://github.com/whatsauth/whatsauth.github.io/assets/11188109/78d313a7-345f-40fe-9cf6-7cbf58fbba2e)  
